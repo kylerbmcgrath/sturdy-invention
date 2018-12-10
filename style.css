@@ -1,0 +1,12 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.output {
+  height: 60px;
+}
+
+input {
+  text-align: center;
+  font-size: 30px;
+}
