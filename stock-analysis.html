@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>EconCalcs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130884214-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-130884214-1');
+    </script>
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html" style="font-family:Noto Serif SC">EconCalcs.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="./stock-analysis.html">Stock Analysis</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Rental Calculator</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-2">
+        </div>
+
+        <div class="col-sm-8 text-center">
+          <h1 class="mt-5">Stock Fundamental Analysis</h1>
+          <p>Fundamental analysis determines the health and performance of a
+            company by looking at key numbers, ratios, and economic indicators. The purpose is to identify
+            fundamentally strong companies or fundamentally weak companies. The calculator below provides
+            a very basic evaluation of some key metrics of fundamental analysis.
+          </p>
+
+          <p class="small"><strong>Disclaimer:</strong> The information below is for educational purposes only and
+            should not be considered financial advice. You should consult with a financial advisor
+            or other professional before making any investment.</p>
+
+          <table class="table table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Fundamental Analysis Calculator</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="pe-ratio-row">
+                <td>
+                  <h4>
+                    P/E Ratio
+                    <i class="fas fa-question-circle fa-xs" data-toggle="tooltip" data-placement="right"
+                    title="The price-earnings ratio (P/E ratio) is the ratio for valuing a company that
+                    measures its current share price relative to its per-share earnings."></i>
+                  </h4>
+                  <input class="fa-input" type="number" oninput="updatePeAnalysis(this)">
+                  <br><br>
+                  <p id="pe-analysis-output" class="output"></p>
+                </td>
+              </tr>
+
+              <tr id="peg-ratio-row">
+                <td>
+                  <h4>
+                    PEG Ratio
+                    <i class="fas fa-question-circle fa-xs" data-toggle="tooltip" data-placement="right"
+                    title="The price/earnings to growth ratio (PEG ratio) is a stock's price-to-earnings
+                    (P/E) ratio divided by the growth rate of its earnings for a specified time period.
+                    The PEG ratio is used to determine a stock's value while taking the company's earnings
+                    growth into account, and is considered to provide a more complete picture than the P/E
+                    ratio."></i>
+                  </h4>
+                  <input class="fa-input" type="number" oninput="updatePegAnalysis(this)">
+                  <br><br>
+                  <p id="peg-analysis-output" class="output"></p>
+                </td>
+              </tr>
+
+              <tr id="price-to-sales-row">
+                <td>
+                  <h4>
+                    Price/Sales Ratio
+                    <i class="fas fa-question-circle fa-xs" data-toggle="tooltip" data-placement="right"
+                    title="The price-sales ratio is found by dividing the company's market cap by
+                    its revenue. This ratio is generally used for unprofitable companies since they
+                    don't have a PE ratio."></i>
+                  </h4>
+                  <input class="fa-input" type="number" oninput="updatePriceToSalesAnalysis(this)">
+                  <br><br>
+                  <p id="price-to-sales-analysis-output" class="output"></p>
+                </td>
+              </tr>
+
+              <tr id="return-on-assets-row">
+                <td>
+                  <h4>
+                    Return on Assets (ROA)
+                    <i class="fas fa-question-circle fa-xs" data-toggle="tooltip" data-placement="right"
+                    title="Return On Assets (ROA) shows the percentage of how profitable a company's
+                    assets are in generating revenue. ROA = (Net Income / Total Assets)"></i>
+                  </h4>
+                  <input class="fa-input" id="return-on-assets-input" type="number" oninput="updateReturnOnAssetsAnalysis(this)">%
+                  <br><br>
+                  <p id="return-on-assets-analysis-output" class="output"></p>
+                </td>
+              </tr>
+
+              <tr id="return-on-equity-row">
+                <td>
+                  <h4>
+                    Return on Equity (ROE)
+                    <i class="fas fa-question-circle fa-xs" data-toggle="tooltip" data-placement="right"
+                    title="Return On Equity is a measure of how well a company uses investments to generate
+                    earnings growth. ROE = (Net Income / Equity)"></i>
+                  </h4>
+                  <input class="fa-input" type="number" oninput="updateReturnOnEquityAnalysis(this)">%
+                  <br><br>
+                  <p id="return-on-equity-analysis-output" class="output"></p>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-sm-2">
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </body>
+
+  <script type="text/javascript">
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    function updatePeAnalysis(inputElement) {
+      let peRatio = inputElement.value;
+      let textEl = document.getElementById("pe-analysis-output");
+      let rowEl = document.getElementById("pe-ratio-row");
+
+      if (peRatio > 25) {
+        textEl.textContent = "May have high expected future growth in earnings or the stock may be the subject of a speculative bubble.";
+        rowEl.className = "table-warning";
+      } else if (peRatio > 17) {
+        textEl.textContent = "Either the stock is overvalued or the company's earnings have increased since the last earnings figure was published. The stock may also be a growth stock with earnings expected to increase substantially in future.";
+        rowEl.className = "";
+      } else if (peRatio > 10) {
+        textEl.textContent = "Stock may be fairly valued";
+        rowEl.className = "";
+      } else if (peRatio > 0) {
+        textEl.textContent = "Either the stock is undervalued or the company's earnings are thought to be in decline. Alternatively, current earnings may be substantially above historic trends or the company may have profited from selling assets.";
+        rowEl.className = "";
+      } else {
+        debugger;
+        textEl.textContent = "The company has negative earnings";
+        rowEl.className = "table-danger";
+      };
+    }
+
+    function updatePegAnalysis(inputElement) {
+      let pegRatio = inputElement.value;
+      let textEl = document.getElementById("peg-analysis-output");
+      let rowEl = document.getElementById("peg-ratio-row");
+
+      if (pegRatio > 1.5) {
+        textEl.textContent = "Company may be overvalued";
+        rowEl.className = "table-danger";
+      } else if (pegRatio > 0.9) {
+        textEl.textContent = "Company may be fairly valued";
+        rowEl.className = "";
+      } else if (pegRatio > 0 ) {
+        textEl.textContent = "Company may be under valued";
+        rowEl.className = "";
+      } else {
+        textEl.textContent = "Earnings may be expected to decline. However, under many circumstances a company will not grow earnings while its free cash flow improves substantially.";
+        rowEl.className = "table-danger";
+      }
+    }
+
+    function updatePriceToSalesAnalysis(inputElement) {
+      let psRatio = inputElement.value;
+      let textEl = document.getElementById("price-to-sales-analysis-output");
+      let rowEl = document.getElementById("price-to-sales-row");
+
+      if (psRatio > 5) {
+        textEl.textContent = "Company may be overvalued";
+        rowEl.className = "table-danger";
+      } else if (psRatio > 2) {
+        textEl.textContent = "Company may be fairly valued";
+        rowEl.className = "";
+      } else {
+        textEl.textContent = "Company may be under valued";
+        rowEl.className = "";
+      }
+    }
+
+    function updateReturnOnAssetsAnalysis(inputElement) {
+      let returnOnAssets = inputElement.value;
+      let textEl = document.getElementById("return-on-assets-analysis-output");
+      let rowEl = document.getElementById("return-on-assets-row");
+
+      if (returnOnAssets >= 5) {
+        textEl.textContent = "Greater than 5% is generally a good return on assets. Compare this value to the return of other companies in the same industry.";
+        rowEl.className = "";
+      } else if (returnOnAssets > 0) {
+        textEl.textContent = "Less than 5% is generally a weak return on assets. Compare this value to the return of other companies in the same industry.";
+        rowEl.className = "table-warning";
+      } else {
+        textEl.textContent = "The return in negative, indicating that this is not a good investment";
+        rowEl.className = "table-danger";
+      }
+    }
+
+    function updateReturnOnEquityAnalysis(inputElement) {
+      let returnOnEquity = inputElement.value;
+      let returnOnAssets = document.getElementById("return-on-assets-input").value;
+      let textEl = document.getElementById("return-on-equity-analysis-output");
+      let rowEl = document.getElementById("return-on-equity-row");
+      let text;
+
+      if (returnOnEquity >= 10) {
+        text = "Greater than 10% is generally a good return on equity. Compare this value to the return of other companies in the same industry.";
+        if (returnOnAssets < returnOnEquity / 4) {text += "\n Note that Return On Assets is much less than Return On Equity. Check if returns have been generated by debt";}
+        textEl.textContent = text;
+        rowEl.className = "";
+      } else if (returnOnEquity > 0) {
+        text = "Less than 10% is generally a weak return on equity. Compare this value to the return of other companies in the same industry.";
+        if ( Number(returnOnAssets) < Number(returnOnEquity) / 4) {text += "\n Note that Return On Assets is much less than Return On Equity. Check if returns have been generated by debt";}
+        textEl.textContent = text;
+        rowEl.className = "table-warning";
+      } else {
+        text = "The return in negative, indicating that this is not a good investment";
+        if (returnOnAssets < returnOnEquity / 4) {text += "\n Note that Return On Assets is much less than Return On Equity. Check if returns have been generated by debt";}
+        textEl.textContent = text;
+        rowEl.className = "table-danger";
+      }
+
+    }
+
+  </script>
+</html>
