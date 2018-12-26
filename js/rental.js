@@ -112,6 +112,8 @@ function dollarStrToNumber (str) {
 }
 
 function calculate () {
+  updateAddress();
+
   let purchasePrice = dollarStrToNumber(document.getElementById("purchase-price").value);
   let downPayment = dollarStrToNumber(document.getElementById("down-payment").value);
   let closingCosts = dollarStrToNumber(document.getElementById("closing-costs").value);
@@ -208,6 +210,8 @@ function updateChart (data) {
 }
 
 function useExample () {
+  document.getElementById("address").value = "1600 Pennsylvania Ave NW, Washington, DC 20500"
+
   document.getElementById("purchase-price").value = "175,000";
   document.getElementById("down-payment-percent").value = "20";
   document.getElementById("closing-costs-percent").value = "5";
@@ -222,4 +226,13 @@ function useExample () {
   document.getElementById("rental-income").value = "1750"
 
   calculate();
+}
+
+function updateAddress () {
+  let address = document.getElementById("address").value;
+  document.getElementById("address-out").textContent = address;
+
+  let map = document.getElementById("map");
+  address = (address || "United States").split(" ").join("+");
+  map.src = "https://www.google.com/maps/embed/v1/place?q=" + address + "&key=AIzaSyCdDQvlU0js1rbgTtGd8aUKwi6qUXw_TEA";
 }

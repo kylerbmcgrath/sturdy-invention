@@ -51,11 +51,18 @@
         </div>
       </div>
 
+      <h3 class="mt-2">Address</h3>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="address" placeholder="1600 Pennsylvania Ave NW, Washington, DC 20500">
+          </div>
+        </div>
+      </div>
+
 
       <h3 class="mt-2">Purchase</h3>
-
       <div class="row">
-
         <div class="col-sm-4">
           <label>Purchase Price</label>
           <div class="input-group mb-3">
@@ -248,6 +255,7 @@
       <br>
       <hr>
       <h2 class="mt-4">ROI Analysis</h2>
+      <p id="address-out" class="lead"></p>
 
       <div class="row">
         <div class="col-sm-4">
@@ -297,8 +305,11 @@
           <p id="roi-out" class="lead">0 %</p>
         </div>
 
-        <div class="col-sm-6">
-          <canvas id="chartjs" class="expense-chart"></canvas>
+        <div class="col-sm-6 text-center">
+          <iframe id="map" width="420" height="210" frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/place?q=united+states&key=AIzaSyCdDQvlU0js1rbgTtGd8aUKwi6qUXw_TEA"
+          allowfullscreen></iframe>
+          <canvas id="chartjs" class="mt-4"></canvas>
         </div>
       </div>
 
@@ -308,16 +319,5 @@
   <script>
     createChart();
   </script>
-
-  <!-- <script>
-    var map;
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
-      });
-    }
-  </script> -->
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDccEnUTXUwQvTGYszqnLooB7ix7jnANbI&callback=initMap" async defer></script> -->
 
 </html>
