@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>EconCalcs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="./js/present-worth.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html" style="font-family:Noto Serif SC">EconCalcs.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./stock-analysis.html">Stock Analysis</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Rental Calculator</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="./present-worth.html">Present Worth</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-5">
+      <div class="col-sm-12 text-center">
+        <h1 class="mt-5">Present Worth Calculator</h1>
+        <p>Present worth analysis is used to find the present value of future money at a given interest rate.</p>
+        <p> <strong>Present Value = (Future Value) / (1 + i)<sup>n</sup></strong> </p>
+        <p> Input multiple amounts below or use this <button style="cursor:pointer;" onclick="useExample()">Example</button> </p>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-9">
+          <canvas id="present-worth-chart"></canvas>
+        </div>
+
+        <div class="col-sm-3">
+          <label>Interest Rate</label>
+          <div class="input-group mb-2">
+            <input type="number" min="0" class="form-control" id="interest-rate" oninput="calculatePresentWorth()">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+
+          <label>Year</label>
+          <div class="input-group mb-2">
+            <input type="number" min="0" id="present-worth-year" class="form-control">
+          </div>
+
+          <label>Amount</label>
+          <div class="input-group mb-2">
+            <input type="number" id="present-worth-amount" class="form-control">
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="button" class="btn btn-primary mb-4" onclick="addAmount()">Add Amount</button>
+            <h2 class=>Present Worth:</h2>
+            <h1 id="present-worth"> $ 0 </h1>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script type="text/javascript">
+      var ctx = document.getElementById('present-worth-chart').getContext('2d');
+      var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            datasets: [{
+                label: "Amount",
+                fill: false,
+                backgroundColor: 'rgb(54, 162, 235, 0.5)',
+                borderColor: 'rgb(54, 162, 235)',
+                borderWidth: 1,
+                data: [],
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+          scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: "Year"
+              }
+            }]
+          }
+        }
+      });
+    </script>
+  </body>
+
+
+</html>
